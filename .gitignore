@@ -1,0 +1,11 @@
+# Dataset
+LongAn_Binary_Dataset_1k/
+
+# Notebook checkpoints
+*.ipynb_checkpoints/
+
+# VSCode config
+.vscode/
+
+# Model lớn (>100MB, nếu muốn dùng LFS thì mới add)
+best_model_longan_cloud.pth
