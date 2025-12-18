@@ -1,11 +1,89 @@
-# Dataset
+# ============================================
+# DATASET - Không push lên GitHub
+# ============================================
 LongAn_Binary_Dataset_1k/
 
-# Notebook checkpoints
+# ============================================
+# MODEL FILES - Dùng Git LFS hoặc tải riêng
+# ============================================
+# File model >100MB sẽ bị GitHub từ chối
+# Nên dùng Git LFS hoặc upload lên Hugging Face Hub
+# best_model_binary_longan.pth
+
+# Các model khác
+*.pth
+*.pt
+*.onnx
+*.h5
+!best_model_binary_longan.pth  # Cho phép file model chính (dùng LFS)
+
+# ============================================
+# PYTHON
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# ============================================
+# JUPYTER NOTEBOOK
+# ============================================
+.ipynb_checkpoints/
 *.ipynb_checkpoints/
 
-# VSCode config
+# ============================================
+# IDE & EDITOR
+# ============================================
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
 
-# Model lớn (>100MB, nếu muốn dùng LFS thì mới add)
-best_model_longan_cloud.pth
+# ============================================
+# LOGS & CACHE
+# ============================================
+*.log
+*.cache
+.cache/
+logs/
+wandb/
+runs/
+mlruns/
+
+# ============================================
+# TEMPORARY FILES
+# ============================================
+*.tmp
+*.temp
+*.bak
+
+# ============================================
+# GRADIO / HUGGING FACE
+# ============================================
+flagged/
+.gradio/
