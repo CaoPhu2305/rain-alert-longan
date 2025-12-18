@@ -239,16 +239,26 @@ transforms.Compose([
 | 1_NguyCo | 0.65 | 0.71 | 0.68 | 200 |
 | **Accuracy** | | | **0.67** | 400 |
 
-### Nhận xét
-- Model đạt độ chính xác tốt nhất tại **Epoch 16** với **66.75%** trên Test Set
-- Sau Epoch 16, model bắt đầu **overfit**: Train Loss tiếp tục giảm (0.773 → 0.545) nhưng Test Loss tăng lên (0.633 → 0.689)
-- **Binary Classification** phù hợp với bài toán cảnh báo sớm
-- Kỹ thuật áp dụng:
-  - Transfer Learning từ ImageNet (ResNet-18)
-  - Data Augmentation đa dạng
-  - Regularization (Dropout 52% + Weight Decay)
-  - Freeze/Unfreeze Strategy
-  - CosineAnnealing LR Scheduler
+### Nhận xét & Hạn chế
+
+#### 📊 Kết quả huấn luyện:
+- Model đạt độ chính xác **66.75%** trên Test Set - đây là kết quả **khiêm tốn**, chỉ nhỉnh hơn ngưỡng đoán ngẫu nhiên (50%)
+- Model bắt đầu **overfit từ Epoch 16**: Train Loss tiếp tục giảm (0.773 → 0.545) trong khi Test Loss tăng lên (0.633 → 0.689)
+- Precision và Recall không cân bằng giữa 2 lớp, cho thấy model gặp khó khăn trong việc phân biệt
+
+#### ⚠️ Hạn chế của bài toán:
+- **Dữ liệu ảnh vệ tinh MODIS có nhiều nhiễu**: Ảnh True Color chịu ảnh hưởng bởi góc chụp, thời điểm, khí quyển... làm giảm chất lượng đầu vào
+- **Chỉ dựa vào ảnh RGB là chưa đủ**: Dự báo thời tiết thực tế cần kết hợp nhiều nguồn dữ liệu (nhiệt độ, độ ẩm, áp suất, dữ liệu radar...), không thể đạt độ chính xác cao chỉ với ảnh vệ tinh đơn thuần
+- **Đặc điểm mây/mưa khó phân biệt trực quan**: Mây có thể xuất hiện mà không có mưa, hoặc mưa có thể đến từ hệ thống thời tiết ngoài vùng quan sát
+
+#### 🔧 Kỹ thuật đã áp dụng:
+- Transfer Learning từ ImageNet (ResNet-18)
+- Data Augmentation đa dạng
+- Regularization (Dropout 52% + Weight Decay)
+- Freeze/Unfreeze Strategy
+- CosineAnnealing LR Scheduler
+
+> **Kết luận:** Dự án này mang tính chất **thử nghiệm/học thuật**, chứng minh khả năng áp dụng CNN vào phân loại ảnh vệ tinh. Tuy nhiên, để đạt độ chính xác cao hơn trong thực tế, cần bổ sung thêm các nguồn dữ liệu khí tượng khác.
 
 ---
 
