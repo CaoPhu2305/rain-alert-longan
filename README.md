@@ -213,21 +213,42 @@ transforms.Compose([
 
 ## 📈 Kết Quả Thử Nghiệm
 
-### Kết quả Cross-Validation (5-Fold)
+### Final Training với Cấu hình Trial 1
 
-| Trial | LR | Dropout | Weight Decay | Avg Accuracy |
-|-------|-----|---------|--------------|--------------|
-| 1 | 5.61e-05 | 0.42 | 7.97e-03 | 66.50% |
-| 2 | 1.58e-04 | 0.25 | 2.05e-04 | **67.38%** |
-| 3 | 1.31e-05 | 0.38 | 5.40e-03 | 64.88% |
-| 4 | 2.61e-04 | 0.49 | 1.10e-04 | 68.44% |
+| Thông số | Giá trị |
+|----------|---------|
+| **Learning Rate** | 2.50e-04 |
+| **Weight Decay** | 8.93e-04 |
+| **Dropout** | 0.52 |
+| **Epochs** | 45 (Freeze 5 + Unfreeze 40) |
 
-### Đánh giá
+### Kết quả Training
+
+| Metric | Giá trị |
+|--------|---------|
+| **Best Test Accuracy** | **66.75%** |
+| **Best Epoch** | 16 |
+| **Final Train Loss** | 0.545 |
+| **Final Test Loss** | 0.689 |
+
+### Chi tiết đánh giá (Classification Report)
+
+| Lớp | Precision | Recall | F1-Score | Support |
+|-----|-----------|--------|----------|---------|
+| 0_AnToan | 0.69 | 0.62 | 0.65 | 200 |
+| 1_NguyCo | 0.65 | 0.71 | 0.68 | 200 |
+| **Accuracy** | | | **0.67** | 400 |
+
+### Nhận xét
+- Model đạt độ chính xác tốt nhất tại **Epoch 16** với **66.75%** trên Test Set
+- Sau Epoch 16, model bắt đầu **overfit**: Train Loss tiếp tục giảm (0.773 → 0.545) nhưng Test Loss tăng lên (0.633 → 0.689)
 - **Binary Classification** phù hợp với bài toán cảnh báo sớm
-- Model có khả năng tổng quát hóa tốt nhờ kỹ thuật:
-  - Transfer Learning từ ImageNet
+- Kỹ thuật áp dụng:
+  - Transfer Learning từ ImageNet (ResNet-18)
   - Data Augmentation đa dạng
-  - Regularization (Dropout + Weight Decay)
+  - Regularization (Dropout 52% + Weight Decay)
+  - Freeze/Unfreeze Strategy
+  - CosineAnnealing LR Scheduler
 
 ---
 
@@ -246,26 +267,6 @@ transforms.Compose([
     ├── 📂 0_AnToan/
     └── 📂 1_NguyCo/
 ```
-
----
-
-## 👥 Thành Viên Nhóm
-
-| STT | Họ và Tên | MSSV | Vai trò |
-|-----|-----------|------|---------|
-| 1 | Thành viên 1 | - | - |
-| 2 | Thành viên 2 | - | - |
-| 3 | Thành viên 3 | - | - |
-
-> 📚 **Môn học:** Đồ Án Trí Tuệ Nhân Tạo  
-> 🏫 **Trường:** [Tên trường]  
-> 📅 **Năm học:** 2024-2025
-
----
-
-## 📜 License
-
-Dự án này được phân phối dưới giấy phép **MIT License**. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
 
 ---
 
