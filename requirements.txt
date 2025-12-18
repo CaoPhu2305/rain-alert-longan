@@ -1,6 +1,10 @@
-gradio==4.44.1
+gradio
 torch
 torchvision
 requests
 Pillow
 numpy
+audioop-lts
+huggingface_hub
+transformers
+urllib3
